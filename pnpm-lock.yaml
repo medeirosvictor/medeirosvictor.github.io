@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      ogl:
+        specifier: ^1.0.11
+        version: 1.0.11
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^6.2.1
@@ -599,6 +603,9 @@ packages:
   obug@2.1.1:
     resolution: {integrity: sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ==}
 
+  ogl@1.0.11:
+    resolution: {integrity: sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -1086,6 +1093,8 @@ snapshots:
   nanoid@3.3.11: {}
 
   obug@2.1.1: {}
+
+  ogl@1.0.11: {}
 
   picocolors@1.1.1: {}
 

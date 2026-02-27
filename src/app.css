@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Monofonto';
+  src:
+    url('/fonts/monofonto.woff2') format('woff2'),
+    url('/fonts/monofonto.woff') format('woff'),
+    url('/fonts/monofonto.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* palette */
+  --color-void:             #030712;
+  --color-surface:          #110818;
+  --color-header:           #1a0d1a;
+  --color-card-dim:         #3d1233;
+  --color-skeleton:         #2a0d20;
+  --color-accent:           #9b3a72;
+  --color-phosphor:         #c084fc;
+  --color-phosphor-bright:  #f0abff;
+
+  /* font — overrides tailwind's built-in font-mono */
+  --font-mono: 'Monofonto', monospace;
+
+  /* custom animation */
+  --animate-skeleton: skeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.7; }
+}

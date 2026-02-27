@@ -1,6 +1,7 @@
 import { NotFoundError, ServerError } from '../lib/errors';
 
 const GITHUB_API = 'https://api.github.com';
+const GITHUB_USERNAME = 'medeirosvictor';
 
 export interface GitHubRepo {
   id: number;
@@ -13,27 +14,37 @@ export interface GitHubRepo {
   stargazers_count: number;
   forks_count: number;
   topics: string[];
+  languages: string[]; // all languages used, sorted by bytes desc
+}
+
+async function fetchRepo(repoName: string): Promise<GitHubRepo> {
+  const base = `${GITHUB_API}/repos/${GITHUB_USERNAME}/${repoName}`;
+
+  const [repoRes, langsRes] = await Promise.all([
+    fetch(base),
+    fetch(`${base}/languages`),
+  ]);
+
+  if (repoRes.status === 404) {
+    throw new NotFoundError(`Repository "${repoName}" not found`);
+  }
+
+  if (!repoRes.ok) {
+    throw new ServerError(`Failed to fetch repository "${repoName}" (${repoRes.status})`);
+  }
+
+  const repo = await repoRes.json();
+  const langsData: Record<string, number> = langsRes.ok ? await langsRes.json() : {};
+
+  const languages = Object.entries(langsData)
+    .sort(([, a], [, b]) => b - a)
+    .map(([lang]) => lang);
+
+  return { ...repo, languages };
 }
 
 /**
- * Fetch a single repository by full name (e.g. "medeirosvictor/some-repo")
- */
-export async function fetchRepo(fullName: string): Promise<GitHubRepo> {
-  const res = await fetch(`${GITHUB_API}/repos/${fullName}`);
-
-  if (res.status === 404) {
-    throw new NotFoundError(`Repository "${fullName}" not found`);
-  }
-
-  if (!res.ok) {
-    throw new ServerError(`Failed to fetch repository "${fullName}" (${res.status})`);
-  }
-
-  return res.json();
-}
-
-/**
- * Fetch multiple repositories from the featured list
+ * Fetch multiple repositories by name. Repos are resolved under GITHUB_USERNAME.
  */
 export async function fetchFeaturedRepos(repoNames: string[]): Promise<GitHubRepo[]> {
   const results = await Promise.allSettled(repoNames.map(fetchRepo));

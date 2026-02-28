@@ -12,20 +12,20 @@
 }
 
 @theme {
-  /* palette */
-  --color-void:             #030712;
-  --color-surface:          #110818;
-  --color-header:           #1a0d1a;
-  --color-card-dim:         #3d1233;
-  --color-skeleton:         #2a0d20;
-  --color-accent:           #9b3a72;
-  --color-phosphor:         #c084fc;
-  --color-phosphor-bright:  #f0abff;
+  /* palette — 25% brighter */
+  --color-void:             #0d0f14;
+  --color-surface:          #1a1220;
+  --color-header:           #241520;
+  --color-card-dim:         #4d1a3d;
+  --color-skeleton:         #351525;
+  --color-accent:          #b44d85;
+  --color-phosphor:        #d09fff;
+  --color-phosphor-bright: #f5c0ff;
 
   /* text colors — brighter grays close to white */
   --color-text-primary:     #e5e5e5;
-  --color-text-secondary:   #a3a3a3;
-  --color-text-muted:       #737373;
+  --color-text-secondary:   #b3b3b3;
+  --color-text-muted:      #8a8a8a;
 
   /* font — overrides tailwind's built-in font-mono */
   --font-mono: 'Monofonto', monospace;

@@ -16,6 +16,8 @@
     <span aria-hidden="true" class="text-accent font-mono text-[0.8125rem] select-none">|</span>
     <a href="#projects" class="font-mono text-[0.8125rem] font-bold tracking-[0.2em] text-phosphor no-underline transition-colors duration-[80ms] hover:text-phosphor-bright">PROJECTS</a>
     <span aria-hidden="true" class="text-accent font-mono text-[0.8125rem] select-none">|</span>
+    <a href="#certifications" class="font-mono text-[0.8125rem] font-bold tracking-[0.2em] text-phosphor no-underline transition-colors duration-[80ms] hover:text-phosphor-bright">CERTS</a>
+    <span aria-hidden="true" class="text-accent font-mono text-[0.8125rem] select-none">|</span>
     <a href="#academic" class="font-mono text-[0.8125rem] font-bold tracking-[0.2em] text-phosphor no-underline transition-colors duration-[80ms] hover:text-phosphor-bright">ACADEMIC</a>
     <span aria-hidden="true" class="text-accent font-mono text-[0.8125rem] select-none">|</span>
     <a href="#contact"  class="font-mono text-[0.8125rem] font-bold tracking-[0.2em] text-phosphor no-underline transition-colors duration-[80ms] hover:text-phosphor-bright">CONTACT</a>

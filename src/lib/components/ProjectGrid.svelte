@@ -1,9 +1,14 @@
 <script lang="ts">
   import { fetchFeaturedRepos } from '../../api/github';
+  import { repoDemos } from '../../api/repos';
 
   let { repos }: { repos: string[] } = $props();
 
   const promise = $derived(fetchFeaturedRepos(repos));
+
+  function getDemoGif(repoName: string): string | undefined {
+    return repoDemos.find(d => d.repoName === repoName)?.gifUrl;
+  }
 </script>
 
 {#await promise}
@@ -13,6 +18,7 @@
         aria-label="Loading {repo}"
         class="bg-surface border border-card-dim border-l-2 border-l-accent p-4 flex flex-col gap-3"
       >
+        <div class="bg-skeleton animate-skeleton w-full aspect-video"></div>
         <div class="bg-skeleton animate-skeleton w-[55%] h-3.5"></div>
         <div class="bg-skeleton animate-skeleton w-full h-3"></div>
         <div class="bg-skeleton animate-skeleton w-[70%] h-3"></div>
@@ -24,9 +30,20 @@
 {:then data}
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
     {#each data as repo (repo.id)}
+      {@const demoGif = getDemoGif(repo.name)}
       <div class="bg-surface border border-card-dim border-l-2 border-l-accent p-4 flex flex-col justify-between gap-4">
 
         <div class="flex flex-col gap-2">
+          {#if demoGif}
+            <div class="w-full aspect-video bg-black/30 rounded overflow-hidden mb-1">
+              <img 
+                src={demoGif} 
+                alt="{repo.name} demo" 
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          {/if}
           <a
             href={repo.html_url}
             target="_blank"
